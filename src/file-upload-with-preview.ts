@@ -185,7 +185,7 @@ export class FileUploadWithPreview {
    */
   uploadId: string;
 
-  constructor(uploadId: string, options: Options = {}) {
+  async constructor(uploadId: string, options: Options = {}) {
     if (!uploadId) {
       throw new Error(
         'No uploadId found. You must initialize file-upload-with-preview with a unique uploadId.',
@@ -267,7 +267,7 @@ export class FileUploadWithPreview {
       successFileAltImage ?? this.options.images.successFileAltImage;
     this.options.images.backgroundImage = backgroundImage ?? this.options.images.backgroundImage;
 
-    this.addImagesFromPath(this.options.presetFiles);
+    await this.addImagesFromPath(this.options.presetFiles);
     this.addBrowseButton(this.options.text.browse);
     this.imagePreview.style.backgroundImage = `url("${this.options.images.baseImage}")`;
     this.bindClickEvents();
